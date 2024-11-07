@@ -4,6 +4,16 @@ namespace Catalog.API.Products.UpdateProduct
     public record UpdateProductCommand(Guid Id, string Name, string Description, string Image, decimal Price, List<string> Category)
              : ICommand<UpdateProductCommandResult>;
     public record UpdateProductCommandResult(Product Product);
+    public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+    {
+        public UpdateProductCommandValidator() {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("Id is requied");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is requied");
+            RuleFor(x => x.Category).NotEmpty().WithMessage("Category is requied");
+            RuleFor(x => x.Image).NotEmpty().WithMessage("Image is requied");
+            RuleFor(x => x.Price).GreaterThan(0).WithMessage("Price is requied");
+        }
+    }
     internal class UpdateProductCommandHandler(IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
             : ICommandHanler<UpdateProductCommand, UpdateProductCommandResult>
     {
