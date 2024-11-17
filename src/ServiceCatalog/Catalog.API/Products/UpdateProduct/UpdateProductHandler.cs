@@ -19,7 +19,6 @@ namespace Catalog.API.Products.UpdateProduct
     {
         public async Task<UpdateProductCommandResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("UpdateProductHandler {@command}", command);
             var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
             if (product is not null)
             {

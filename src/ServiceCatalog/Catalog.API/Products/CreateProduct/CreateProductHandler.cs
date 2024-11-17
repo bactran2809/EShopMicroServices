@@ -22,7 +22,6 @@ namespace Catalog.API.Products.CreateProduct
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("CreateProductCommandHandler {@command}", command);
             var product = new Product
             {
                 Name = command.Name,
