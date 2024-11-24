@@ -7,14 +7,18 @@ namespace Basket.API.Bastket.DeleteBastket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/bastket/{UserName}", async (DeleteBastketEndpointRequest request, ISender sender) =>
+            app.MapDelete("/bastket/{UserName}", async (string UserName, ISender sender) =>
             {
-                var command = request.Adapt<DeleteBastketCommand>();
+                var command = new DeleteBastketCommand(UserName);
                 var res = await sender.Send(command);
                 var response = res.Adapt<DeleteBastketEndpointResponse>();
 
                 return Results.Ok(response);
-            });
+            }).WithName("DeleteBastket")
+            .Produces<DeleteBastketEndpointResponse>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Delete Bastket")
+            .WithDescription("Delete Bastket");
         }
     }
 }

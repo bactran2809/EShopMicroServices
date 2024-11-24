@@ -30,7 +30,7 @@ namespace Catalog.API.Products.UpdateProduct
                 session.Update(product);
                 await session.SaveChangesAsync(cancellationToken);
             }
-            return product is null ? throw new ProductNotFoundException() : new UpdateProductCommandResult(product);
+            return product is null ? throw new ProductNotFoundException(command.Id.ToString()) : new UpdateProductCommandResult(product);
         }
     }
 }

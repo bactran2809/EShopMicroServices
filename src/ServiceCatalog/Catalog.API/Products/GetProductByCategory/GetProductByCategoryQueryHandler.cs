@@ -12,7 +12,7 @@
                                     .ToListAsync(cancellationToken);
              return products is not null 
                             ? new GetProductByCategoryResult(products) 
-                                    : throw new ProductNotFoundException();
+                                    : throw new ProductNotFoundException(query.Category);
 
         }
     }   

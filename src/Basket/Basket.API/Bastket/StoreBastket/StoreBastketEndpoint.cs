@@ -1,5 +1,7 @@
 ﻿
+using Basket.API.Bastket.GetBastket;
 using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Bastket.StoreBastket
 {
@@ -18,13 +20,18 @@ namespace Basket.API.Bastket.StoreBastket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/basket", async (StoreBastketRequest body, ISender sender) =>
+            app.MapPost("/basket", async (StoreBastketRequest request, ISender sender) =>
             {
-                var command = body.Adapt<StoreBastketCommand>(); 
+                var command = request.Adapt<StoreBastketCommand>(); 
                 var res = await sender.Send(command);
                 var result = res.Adapt<StoreBastketResult>();
                 return Results.Created($"/bastket/{result.UserName}",result);  
-            });
+            })
+            .WithName("StoreBastket")
+            .Produces<GetBastketResponse>(StatusCodes.Status201Created)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Store Bastket")
+            .WithDescription("Store Bastket");
         }
     }
 }
