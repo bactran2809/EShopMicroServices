@@ -6,16 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Basket.API.Bastket.StoreBastket
 {
     public record StoreBastketRequest(ShoppingCart Cart);
-    public record StoreBastketResult(string  UserName);
-
-    public class StoreBasketCommandValidator : AbstractValidator<StoreBastketRequest>
-    {
-        public StoreBasketCommandValidator()
-        {
-            RuleFor(x => x.Cart).NotNull().WithMessage("Cart is requied");
-            RuleFor(x => x.Cart.UserName).NotEmpty().WithMessage("UserName is requied");
-        }
-    }
+    public record StoreBastketResult(string  UserName);  
     public class StoreBastketEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)

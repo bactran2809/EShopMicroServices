@@ -1,4 +1,6 @@
-using Marten;
+using BuildingBlocks.Exceptions.Handler;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,24 @@ builder.Services.AddMarten(opts =>
     opts.Schema.For<ShoppingCart>().Identity(x => x.UserName);
 }).UseLightweightSessions()
 ;
+builder.Services.AddScoped<IBastketRepository, BastketRepository>();
+builder.Services.Decorate<IBastketRepository, CacheBastketRepository>();
+builder.Services.AddStackExchangeRedisCache(opt =>
+{
+    opt.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
+    .AddRedis(builder.Configuration.GetConnectionString("Redis")!);
+
 var app = builder.Build();
+
 app.MapCarter();
+app.UseExceptionHandler(opts => { });
+app.UseHealthChecks("/health", new HealthCheckOptions()
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.Run();

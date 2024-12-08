@@ -1,5 +1,4 @@
-﻿using Basket.API.Bastket.DeleteBastket;
-
+﻿
 namespace Basket.API.Bastket.GetBastket
 {
     public record GetBastketResponse(ShoppingCart ShoppingCart);

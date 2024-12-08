@@ -1,4 +1,6 @@
 using BuildingBlocks.Exceptions.Handler;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 // add Service to the container
@@ -20,7 +22,7 @@ builder.Services.AddMarten(opts =>
 .UseLightweightSessions();
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.InitializeMartenWith<CatalogInitialData>();
+   // builder.Services.InitializeMartenWith<CatalogInitialData>();
 }
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
@@ -34,9 +36,9 @@ var app = builder.Build();
 
 app.MapCarter();
 
-app.UseExceptionHandler(opt =>
+app.UseExceptionHandler(opt =>{ });
+app.UseHealthChecks("/health", new HealthCheckOptions()
 {
-
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
-app.UseHealthChecks("/health");
 app.Run();
