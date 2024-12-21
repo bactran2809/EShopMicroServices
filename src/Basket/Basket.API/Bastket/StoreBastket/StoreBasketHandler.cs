@@ -1,4 +1,5 @@
 ﻿
+using Discount.Grpc;
 using FluentValidation;
 
 namespace Basket.API.Bastket.StoreBastket
@@ -13,11 +14,17 @@ namespace Basket.API.Bastket.StoreBastket
             RuleFor(x => x.Cart.UserName).NotEmpty().WithMessage("UserName is requied");
         }
     }
-    public class StoreBasketHandler(IBastketRepository repository) : ICommandHanler<StoreBastketCommand, StoreBasketResult>
+    public class StoreBasketHandler(IBastketRepository repository, DiscountProtoService.DiscountProtoServiceClient disCountProto)
+        : ICommandHanler<StoreBastketCommand, StoreBasketResult>
     {
         public async  Task<StoreBasketResult> Handle(StoreBastketCommand request, CancellationToken cancellationToken)
         {
             ShoppingCart cart = request.Cart;
+            foreach(var item in cart.ShoppingCartItems)
+            {
+                var coupon = await disCountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName });
+                item.Price -= coupon.Amount;
+            }
             await repository.StoreBastket(cart, cancellationToken);
             return new StoreBasketResult(cart.UserName);
         }
