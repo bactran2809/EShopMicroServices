@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Ordering.Application
 {
@@ -8,6 +9,12 @@ namespace Ordering.Application
         {
 
             return services;
+        }
+
+        public static WebApplication UseApiSerices(this WebApplication app)
+        {
+
+            return app;
         }
     }
 }
