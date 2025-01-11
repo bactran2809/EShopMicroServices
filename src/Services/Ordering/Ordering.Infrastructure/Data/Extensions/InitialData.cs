@@ -30,7 +30,7 @@
                 var order1 = Order.Create(
                         OrderId.Of(Guid.NewGuid()),
                         CustomerId.Of(new Guid("5de7b731-5649-4885-bc6e-a8b98bcd4137")),
-                        OrderName.Of("ORD1"),
+                        OrderName.Of("ORD01"),
                         address1,
                         address1,
                         payment1
@@ -42,7 +42,7 @@
                 var order2 = Order.Create(
                       OrderId.Of(Guid.NewGuid()),
                       CustomerId.Of(new Guid("dd3200ec-abb4-4b6e-b9fc-ff0bad1666d4")),
-                      OrderName.Of("ORD2"),
+                      OrderName.Of("ORD02"),
                       address2,
                       address2,
                       payment2
