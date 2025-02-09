@@ -18,7 +18,7 @@ public static class Extentions
             };
             cfg.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(new Uri(configuration["MessageBroker:Host"]!),  host =>
+                configurator.Host(configuration["MessageBroker:Host"],"/",  host =>
                 {
                     host.Username(configuration["MessageBroker:UserName"]!);
                     host.Password(configuration["MessageBroker:Password"]!);

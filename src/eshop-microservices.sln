@@ -33,7 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Application", "Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Infrastructure", "Services\Ordering\Ordering.Infrastructure\Ordering.Infrastructure.csproj", "{4161EA36-C1B6-4DC5-9BB5-510C889A7F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Messaging", "BuildingBlocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj", "{CA52FDD4-214A-44C0-8F61-EBF00E79F007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Messaging", "BuildingBlocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj", "{CA52FDD4-214A-44C0-8F61-EBF00E79F007}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{F1EC725E-A300-42DD-B5A2-4DB4D6CF125D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YarpApiGateway", "ApiGateways\YarpApiGateway\YarpApiGateway.csproj", "{3E51B808-ED13-46E3-B43D-E81426D3CD17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{A5E5DDD8-9A27-4E92-B83D-2C43ACED288E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shoppoing.Web", "WebApps\Shoppoing.Web\Shoppoing.Web.csproj", "{891CF2D6-B979-4233-B348-0FCE44F955F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +89,14 @@ Global
 		{CA52FDD4-214A-44C0-8F61-EBF00E79F007}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA52FDD4-214A-44C0-8F61-EBF00E79F007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA52FDD4-214A-44C0-8F61-EBF00E79F007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E51B808-ED13-46E3-B43D-E81426D3CD17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E51B808-ED13-46E3-B43D-E81426D3CD17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E51B808-ED13-46E3-B43D-E81426D3CD17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E51B808-ED13-46E3-B43D-E81426D3CD17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{891CF2D6-B979-4233-B348-0FCE44F955F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{891CF2D6-B979-4233-B348-0FCE44F955F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{891CF2D6-B979-4233-B348-0FCE44F955F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{891CF2D6-B979-4233-B348-0FCE44F955F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +115,8 @@ Global
 		{2E4ADB92-6F6F-4D42-B601-EBCE8EB445A0} = {597155E9-2EF3-434C-9458-7BC3AC76698F}
 		{4161EA36-C1B6-4DC5-9BB5-510C889A7F2F} = {597155E9-2EF3-434C-9458-7BC3AC76698F}
 		{CA52FDD4-214A-44C0-8F61-EBF00E79F007} = {19B7CBC3-9229-4A48-A679-D4F9F3495698}
+		{3E51B808-ED13-46E3-B43D-E81426D3CD17} = {F1EC725E-A300-42DD-B5A2-4DB4D6CF125D}
+		{891CF2D6-B979-4233-B348-0FCE44F955F5} = {A5E5DDD8-9A27-4E92-B83D-2C43ACED288E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D88E6E8-9411-4899-9B7D-5558EAC9B7DA}
