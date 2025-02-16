@@ -1,7 +1,26 @@
+using Refit;
+using Shoppoing.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddRefitClient<ICataglogService>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri(builder.Configuration["AppSettings:GatewayAddress"]!);
+    });
+builder.Services.AddRefitClient<IBasketService>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri(builder.Configuration["AppSettings:GatewayAddress"]!);
+    });
+builder.Services.AddRefitClient<IOrderingService>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri(builder.Configuration["AppSettings:GatewayAddress"]!);
+    });
 
 var app = builder.Build();
 
